@@ -1,0 +1,88 @@
+
+
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div>
+                    <div class="header mb-3">
+                        <h3>Search</h3>
+                        <div class="col-auto d-flex">
+                            <select onChange="myNewFunction(this);" class="form-select" id="floatingSelect"  aria-label="Floating label select example">
+                                <option selected>Chọn điểm đến</option>
+                                {{#each city}}
+                                <option value="{{this.slug}}">{{this.name}}</option>
+                                {{/each}}
+
+                            </select>
+                            <a  class="btn btn-outline-secondary btn-search"><i class="fa-solid fa-magnifying-glass"></i></a>
+                            
+                            {{!-- <span id="endDateSelected"></span> --}}
+                        </div>
+                        
+                    </div>
+                    <div>
+                        <h5>Lọc kết quả</h5>
+                        <small>Phân loại kết quả theo</small>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+                            <label class="form-check-label" for="flexCheckIndeterminate">
+                                Giá: Cao-Thấp
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+                            <label class="form-check-label" for="flexCheckIndeterminate">
+                                Giá: Thấp-Cao
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-8 px-5">
+                {{#each hotel}}
+                    <div class="row mb-3">
+                        <div class="col-3">
+                            <img class="w-100 h-100 img-fluid" src="https://ik.imagekit.io/tvlk/apr-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/20003568-ffc54112b223826089b4ab0670db4863.jpeg?tr=q-40,w-300,h-300&_src=imagekit" alt="">
+                        </div>
+                        <div class="col-6 d-flex flex-column">
+                                <h5 class="card-title">{{this.name}}</h5>
+                                <h6><span class="badge bg-info">{{this.type}}</span></h6>
+                                <div class="d-flex">
+                                    <i class="fa-solid fa-location-dot me-2" style="color: grey;" ></i>
+                                    <h6>{{this.address}}</h6>
+                                </div>
+                        </div>
+                    
+                        <div class="col-3 d-flex flex-column justify-content-end">
+                            
+                                <h4 style="color: red;">{{this.price}} VND</h4> 
+                                <a href="/hotel/{{this._id}}/{{this.title}}" class="btn btn-primary">Xem chi tiết</a>
+                        </div>
+                    </div>
+                    {{else}}
+                        <h3 class="text-center">Không tìm thấy khách sạn nào</h3>
+                {{/each}}
+
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<script>
+
+    function myNewFunction(sel) {
+    let url=sel.options[sel.selectedIndex].value;
+    let btn = document.querySelector('.btn-search')
+    btn.setAttribute('href', '/'+url)
+    //console.log('/'+url+'/hotel')
+    btn.submit()
+    }
+
+
+</script>
+

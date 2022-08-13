@@ -1,0 +1,100 @@
+<div class="container-fluid p-5">
+    <div class="container px-5 shadow">
+        <div class="p-3 border-bottom">
+            
+            <h4>{{hotel.name}}</h4>
+            <h6 class="text-secondary">{{hotel.description}}</h6>
+            <h5><span class="badge rounded-pill bg-info text-white">{{hotel.type}}</span></h5>
+            <div class="d-flex">
+                <i class="fa-solid fa-location-dot me-2" style="color: grey;" ></i>
+                <h6 class="text-secondary">{{hotel.address}}</h6>
+            </div>
+            
+        </div>
+        <div class="p-3" >
+            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                    <img src="https://ik.imagekit.io/tvlk/apr-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/10021706-4b50ac9d68b4e205c586dc78fdcc5169.jpeg?_src=imagekit&tr=dpr-2,c-at_max,h-488,q-40,w-768" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="https://ik.imagekit.io/tvlk/apr-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/10021706-1024x683-FIT_AND_TRIM-3063645f42ce029994018dc24e25469a.jpeg?_src=imagekit&tr=dpr-2,c-at_max,h-488,q-40,w-768" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="https://ik.imagekit.io/tvlk/apr-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/10021706-566750b2dc2058367813fecc8d3c93b9.jpeg?_src=imagekit&tr=dpr-2,c-at_max,h-360,q-40,w-640" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div class="p-3">
+                <div class="row">
+                    <div class="col-6 d-flex flex-column justify-content-start">
+                        <h5>Traveler</h5>
+                        <h3 class="text-info"><i class="fa-solid fa-dove"></i>8.2 Tiện lợi</h3>
+                        <span>đánh giá từ 21 du khách</span>
+                    </div>
+                    <div class="col-6 d-flex flex-column align-items-end">
+                        <span>Giá phòng mỗi đêm từ</span>
+                        <h4 class="text-primary">2142343</h4>
+                        <a href="#room" class="btn btn-lg btn-outline bg-primary" style="width: 200px;">Đặt ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-5">
+    <div class="container shadow">
+        <div class="p-3" id="room">
+            <div class="row" style="background-color: #ffffff;">
+                <div class="col-4 d-block" style="height: 200px;">
+                    <img class="h-100" src="https://ik.imagekit.io/tvlk/generic-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/20018977-c2d1f08cf64632ddeb033d64eae972fd.jpeg?_src=imagekit&tr=dpr-2,c-at_max,h-144,q-40,w-287" alt="">
+                </div>
+                <div class="col-8">
+                    {{!-- {{#each room}} --}}
+                    <div class="pb-3">
+                        <h5>{{room.title}}</h5>
+                        <h5>{{room.description}}</h5>
+                        <h5><i class="fa-solid fa-users me-2"></i>{{room.maxPeople}} khách</h5>
+                    </div>
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-4">
+                        <h6 class="text-success"><i class="fa-solid fa-utensils me-2"></i>Miễn phí buổi sáng</h6>
+                        <h6 class="text-success"><i class="fa-solid fa-wifi me-2"></i>Wifi miễn phí</h6>
+                        <h6 class="text-success"><i class="fa-solid fa-ban-smoking me-2"></i>Không hut thuốc</h6> 
+                        </div>
+                        <div class="col-4">
+                        <h6>
+                            <img src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/b/b7f44a75a61d79df6226747661f37ca0.svg" alt="">
+                            Không hoàn tiền
+                        </h6>
+                        <h6>
+                            <img src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/b/b7f44a75a61d79df6226747661f37ca0.svg" alt="">
+                            Không áp dụng đổi lịch
+                        </h6>
+                        <a class="text-primary me-1 text-decoration-none" style="font-size: 15px;">
+                            <img src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/9/93d682fb169004ee2a60c098735dd3da.svg" alt="">
+                            Xem chính sách hủy phòng
+                        </a>
+                        </div>
+                        <div class="col-4">
+                        <span>Giá phòng mỗi đêm từ</span>
+                        <h4 class="text-primary">{{room.price}}</h4>
+                        <a href="" class="btn btn-lg btn-outline bg-primary" style="width: 200px;">Đặt ngay</a>
+                        </div>
+                    </div>
+                    
+                    {{!-- {{/each}} --}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

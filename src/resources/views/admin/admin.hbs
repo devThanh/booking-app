@@ -1,0 +1,318 @@
+<div class="container-fluid">
+    
+        <div class="row">
+                             {{#if deletedCount}}
+        <a href="/admin/trash" class="text-danger">Thùng rác ({{deletedCount}})</a>
+        {{/if}}
+            <div class="col-3">
+
+                <p>
+            <a class="btn btn-primary w-100 my-3" type="button" data-bs-toggle="collapse" data-bs-target="#addCity" aria-expanded="false" aria-controls="collapseExample">
+                Thêm điểm đến
+                
+            </a>
+            <a class="btn btn-primary w-100 my-3" type="button" data-bs-toggle="collapse" data-bs-target="#editCity" aria-expanded="false" aria-controls="collapseExample">
+                Chỉnh sửa & xóa điểm đến
+            </a>
+            
+            <a class="btn btn-primary w-100 my-3" type="button" data-bs-toggle="collapse" data-bs-target="#addHotel" aria-expanded="false" aria-controls="collapseExample">
+                Thêm khách sạn
+            </a>
+            <a class="btn btn-primary w-100 my-3" type="button" data-bs-toggle="collapse" data-bs-target="#editHotelRoom" aria-expanded="false" aria-controls="collapseExample">
+                Chỉnh sửa & xóa khách sạn -phòng
+            </a>
+          
+            {{!-- <a class="btn btn-primary w-100 my-3" type="button" data-bs-toggle="collapse" data-bs-target="#addRoom" aria-expanded="false" aria-controls="collapseExample">
+                Thêm phòng
+            </a>
+           
+            <a class="btn btn-primary w-100 my-3" type="button" data-bs-toggle="collapse" data-bs-target="#editRoom" aria-expanded="false" aria-controls="collapseExample">
+                Chỉnh sửa & xóa phòng
+            </a> --}}
+            
+        </p>
+            </div>
+            <div class="col-9">
+
+                {{!-- Thêm điểm đến start--}}
+                <div class="collapse" id="addCity">
+                    <div class="mt-4">
+                        <h1>THÊM ĐIỂM ĐẾN</h1>
+                        <form action="/admin/create/save" method="POST">
+                            <div class="mb-3 px-5">
+                                <label for="name" class="form-label">Tên thành phố</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                            </div>
+                            <div class="mb-3 px-5">
+                                <label for="description" class="form-label">Mô tả</label>
+                                <textarea class="form-control" id="description" rows="3" name="description"></textarea>
+                            </div>
+                            <div class="mb-3 px-5">
+                                <label for="admini_unit" class="form-label">Đơn vị hành chính</label>
+                                <select  id="admini_unit" class="form-control" name="admini_unit" >
+                                    <option  value="Thành phố" >Thành phố</option>
+                                    <option  value="Vùng" >Vùng</option>
+                                </select>
+                            </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn-lg btn-success mx-auto px-5">Thêm</button>
+                                </div>
+                                
+                        </form>
+
+
+
+                    </div>
+
+                </div>
+                {{!-- Thêm điểm đến end--}}
+
+                {{!-- Sửa điểm đến start --}}
+                <div class="collapse" id="editCity">
+                    <div class="mt4">
+                        <h1>Chỉnh sửa điểm đến</h1>
+                        {{#if deletedCount}}
+                            <a href="/admin/trash" class="text-danger">Thùng rác ({{deletedCount}})</a>
+                            {{/if}}
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Tên điểm đến</th>
+                                <th scope="col">Mô tả điểm đến</th>
+                                <th scope="col">Đơn vị hành chính</th>
+                                <th scope="col">Thời gian chỉnh sửa</th>
+                                <th scope="col" colspan="2"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    {{#each city}}
+                                <tr>
+                                <th scope="row">{{sum @index 1}}</th>
+                                <td>{{this.name}}</td>
+                                <td>{{this.description}}</td>
+                                <td>{{this.admini_unit}}</td>
+                                <td>{{this.updatedAt}}</td>
+                                <td scope="col" colspan="2">
+                                    <a class="text-decoration-none pe-5" href="/admin/edit/{{this._id}}/city" >Sửa</a>
+                                    <a class="text-decoration-none"  data-bs-toggle="modal" data-bs-target="#delete-course-modal" data-bs-id="{{this.slug}}">Xóa</a>
+                                </td>
+                                </tr>
+                                {{else}}
+                                    <tr class="text-center">
+                                    <td colspan="5">Không có tour. Thêm tour mới <a href="/admin/create">Tại đây</a> </td>
+                                    </tr>
+                                {{/each}}
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    {{!-- Delete Hidden Form --}}
+                    <form name="delete-form" method="POST"></form>
+
+
+                    <div class="modal fade" id="delete-course-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Xóa khóa học?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn xóa khóa học.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="btn-delete" class="btn btn-danger" >Xóa</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                {{!-- Sửa điểm đến end--}}
+
+                {{!-Thêm khách sạn start-}}
+                <div class="collapse" id="addHotel">
+                    <div class="mt-4">
+                        <h1>THÊM KHÁCH SẠN</h1>
+                        <form action="/hotel/create" method="POST">
+                            <div class="mb-3 px-5">
+                                <label for="name" class="form-label">Tên khách sạn</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                            </div>
+                            <div class="mb-3 px-5">
+                                <label for="type" class="form-label">Loại</label>
+                                <textarea class="form-control" id="type" rows="3" name="type"></textarea>
+                            </div>
+                            <div class="mb-3 px-5">
+                                <label for="city" class="form-label">Tên thành phố</label>
+                                <input type="text" class="form-control" id="city" name="city">
+                            </div>
+                            <div class="mb-3 px-5">
+                                <label for="description" class="form-label">Mô tả</label>
+                                <input type="text" class="form-control" id="description" name="description">
+                            </div>
+                            <div class="mb-3 px-5">
+                                <label for="title" class="form-label">Tiêu đề</label>
+                                <input type="text" class="form-control" id="title" name="title">
+                            </div>
+                            <div class="mb-3 px-5">
+                                <label for="address" class="form-label">Địa chỉ</label>
+                                <input type="text" class="form-control" id="address" name="address">
+                            </div>
+                            <div class="mb-3 px-5">
+                                <label for="distance" class="form-label">Khoảng cách</label>
+                                <input type="text" class="form-control" id="distance" name="distance">
+                            </div>
+                            <div class="mb-3 px-5">
+                                <label for="price" class="form-label">Giá</label>
+                                <input type="text" class="form-control" id="price" name="price">
+                            </div>
+                            
+                            <div class="text-center">
+                                    <button type="submit" class="btn-lg btn-success mx-auto px-5">Thêm</button>
+                            </div>
+                                
+                        </form>
+
+
+
+                    </div>
+                </div>
+                {{!-Thêm khách sạn end-}}
+
+
+                {{!-Xóa sửa khách sạn & phòng start-}}
+                <div class="collapse" id="editHotelRoom">
+                    <div class="mt4">
+                        <h1>Chỉnh sửa điểm đến</h1>
+                        {{#if deletedCount}}
+                            <a href="/admin/trash" class="text-danger">Thùng rác ({{deletedCount}})</a>
+                            {{/if}}
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Tên khách sạn</th>
+                                <th scope="col">Loại</th>
+                                <th scope="col">Địa chỉ</th>
+                                {{!-- <th scope="col">Tên Phòng</th>
+                                <th scope="col">Số người</th>
+                                <th scope="row">Số phòng</th>
+                                <th scope="col">Thời gian thuê</th> --}}
+                                <th scope="col" colspan="4"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    {{#each hotels}}
+                                <tr>
+                                <th scope="row">{{sum @index 1}}</th>
+                                <td>{{this.name}}</td>
+                                <td>{{this.type}}</td>
+                                <td>{{this.address}}</td>
+                                
+                                {{!-- <td>{{room.title}}</td>
+                                <td>{{room.maxPeople}}</td> --}}
+                                {{!-- {{#each room.roomNumbers}}
+                                    <td>{{this.number}}</td>
+                                    <td>{{this.unavailableDates}}</td>
+                                {{/each}} --}}
+                             
+                                <td scope="col" colspan="2">
+                                    <a class="text-decoration-none pe-5" href="/admin/edit/{{this._id}}/hotel" >Sửa</a>
+                                    <a class="text-decoration-none"  data-bs-toggle="modal" data-bs-target="#delete-hotel-modal" data-bs-id-hotel="{{this._id}}">Xóa</a>
+                                </td>
+                                </tr>
+                                {{!-- {{else}}
+                                    <tr class="text-center">
+                                    <td colspan="5">Không có tour. Thêm tour mới <a href="/admin/create">Tại đây</a> </td>
+                                    </tr> --}}
+                                {{/each}}
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    {{!-- Delete Hidden Form --}}
+                    <form name="delete-form-hotel" method="POST"></form>
+
+
+                    <div class="modal fade" id="delete-hotel-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Xóa khóa học?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn xóa khóa học.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="btn-delete-hotel" class="btn btn-danger" >Xóa</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                {{!-Xóa sửa khách sạn & phòng end-}}
+            </div>
+
+        </div>
+</div>
+
+
+
+<script>
+  let deleteCourseModal = document.getElementById('delete-course-modal')
+    let deleteHotelModal = document.getElementById('delete-hotel-modal')
+
+  let btnDelete = document.getElementById('btn-delete')
+   let btnDeleteHotel = document.getElementById('btn-delete-hotel')
+  let deleteForm = document.forms['delete-form'] 
+  let deleteFormHotel = document.forms['delete-form-hotel'] 
+
+  let id,hotelid
+  deleteCourseModal.addEventListener('show.bs.modal', function (event) {
+  // Button that triggered the modal
+  var button = event.relatedTarget
+  // Extract info from data-bs-* attributes
+  id = button.getAttribute('data-bs-id')
+ // hotelid = button.getAttribute('data-bs-id-hotel')
+  console.log(id)
+
+  btnDelete.onclick = function(){
+    deleteForm.action = '/admin/' + id + '?_method=DELETE'
+    deleteForm.submit()
+  }
+  
+
+  {{!-- btnDeleteHotel.onclick = function(){
+    deleteFormHotel.action = '/hotel/' + hotelid +'delete'+ '?_method=DELETE'
+    deleteFormHotel.submit()
+  } --}}
+})
+
+
+deleteHotelModal.addEventListener('show.bs.modal', function (event) {
+  // Button that triggered the modal
+  var button = event.relatedTarget
+  // Extract info from data-bs-* attributes
+  //id = button.getAttribute('data-bs-id')
+  hotelid = button.getAttribute('data-bs-id-hotel')
+  //console.log(id)
+
+
+  
+
+  btnDeleteHotel.onclick = function(){
+    deleteFormHotel.action = '/hotel/' + hotelid +'/delete'+ '?_method=DELETE'
+    deleteFormHotel.submit()
+  }
+})
+</script>

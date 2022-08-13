@@ -1,0 +1,24 @@
+<div class="mt-4">
+<h1>THÊM ĐIỂM ĐẾN</h1>
+<form action="/admin/create/save" method="POST">
+    <div class="mb-3 px-5">
+        <label for="name" class="form-label">Tên thành phố</label>
+        <input type="text" class="form-control" id="name" name="name">
+    </div>
+    <div class="mb-3 px-5">
+        <label for="description" class="form-label">Mô tả</label>
+        <textarea class="form-control" id="description" rows="3" name="description"></textarea>
+    </div>
+    <div class="mb-3 px-5">
+        <label for="admini_unit" class="form-label">Đơn vị hành chính</label>
+        <select  id="admini_unit" class="form-control" name="admini_unit" >
+            <option  value="Thành phố" >Thành phố</option>
+            <option  value="Vùng" >Vùng</option>
+        </select>
+    </div>
+        <button type="submit" class="btn-lg btn-success mx-auto px-5">Thêm</button>
+</form>
+
+
+
+</div>

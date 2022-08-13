@@ -1,0 +1,44 @@
+
+body{
+    margin: 0;
+    background-color: #e6eaed !important;
+}
+
+.nav-link{
+    font-size: 1.2rem;
+    margin-right: 10px;
+    font-weight: 500;
+    color: #212121;
+}
+
+a:hover{
+    color: green !important;
+}
+
+.carousel-inner{
+    background: rgba(0, 0, 0, 0.5);
+  }
+.carousel-caption{
+    bottom: 15%;
+}
+
+.booking{
+    position: relative;
+    margin-top: -60px !important;
+    z-index: 1;
+}
+
+.about-text{
+    position: relative;
+    margin-left: -50px;
+    z-index: 1;
+    background-color: white;
+}
+
+.back-to-top{
+    position: fixed;
+    right: 45px;
+    bottom: 45px;
+    z-index: 10;
+}
+
